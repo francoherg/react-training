@@ -40,3 +40,143 @@
 .read-the-docs {
   color: #888;
 }
+.cine-header {
+  background: linear-gradient(135deg, #0a0a0a, #1b1b1b);
+  color: white;
+  padding: 3rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 30px rgba(255, 0, 80, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.cine-header h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.cine-header h2 {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  color: #ff0050;
+}
+
+.cine-welcome {
+  background: #111;
+  color: #eee;
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 20px rgba(255, 0, 80, 0.2);
+  font-size: 1.2rem;
+}
+
+.cine-welcome button {
+  margin-top: 1rem;
+  padding: 0.7rem 1.4rem;
+  font-size: 1.1rem;
+  background: #ff0050;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.cine-welcome button:hover {
+  transform: scale(1.1);
+}
+
+.cine-section {
+  background: #1b1b1b;
+  color: white;
+  padding: 2rem;
+
+  margin-bottom: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 0, 80, 0.3);
+}
+
+.cine-section h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #ff0050;
+}
+
+.cine-section ul {
+  list-style: none;
+  padding: 0;
+  font-size: 1.3rem;
+}
+
+.cine-section li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+}
+
+.cine-section li:last-child {
+  border-bottom: none;
+}
+body {
+  background: radial-gradient(circle at 50% 20%, #111, #000);
+  color: white;
+  min-height: 100vh;
+}
+
+header {
+  background: linear-gradient(135deg, #1a237e, #0d47a1, #283593);
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+header h1 {
+  text-shadow: 0 0 10px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.4);
+}
+
+section {
+  animation: fadeIn 0.8s ease forwards;
+  backdrop-filter: blur(4px);
+}
+
+button {
+  box-shadow: 0 0 12px rgba(0, 102, 255, 0.8);
+  transform: scale(1);
+  transition: 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 20px rgba(0, 102, 255, 1);
+}
+
+ul li {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #1e88e5;
+  transition: 0.25s ease;
+}
+
+ul li:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(6px);
+  box-shadow: 0 0 12px rgba(255,255,255,0.25);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.carousel-container {
+  width: 100%;
+}
+
+.carousel-track {
+  animation: scroll 20s linear infinite;
+}
+
