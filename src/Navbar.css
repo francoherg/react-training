@@ -1,72 +1,350 @@
 .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    width: 100%;
-    backdrop-filter: blur(14px);
-    background: rgba(0, 0, 0, 0.45);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%; /* Ahora sí llegará a los extremos */
+  background: rgba(5, 5, 10, 0.85); 
+  backdrop-filter: blur(12px);
+  height: 80px;
+  display: flex;
+  align-items: center; /* Centra verticalmente el contenido */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Un borde muy sutil */
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  /* Aquí es donde controlas el ancho del contenido */
+  max-width: 1400px; 
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+/* La línea neón de abajo ahora cruzará toda la pantalla */
+.navbar-bottom-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--cyber-pink) 20%, 
+    var(--cyber-blue) 80%, 
+    transparent 100%);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+/* --- LOGO --- */
+/* --- LOGO CINE AMÉRICA --- */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+}
+
+.logo-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid var(--cyber-pink);
+  object-fit: cover;
   
-  .navbar-inner {
-    max-width: 1200px;
-    margin: auto;
-    padding: 1rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  /* ESTADO PERMANENTE (Lo que antes era el hover) */
+  transform: rotate(10deg) scale(1.1); 
+  filter: brightness(1.2);
   
-  .navbar-logo {
-    font-size: 1.4rem;
-    font-weight: 800;
-    letter-spacing: 0.18em;
-    color: white;
-    text-transform: uppercase;
+  /* Animación de respiración neón */
+  animation: logoPulse 2s infinite ease-in-out;
+  transition: all 0.4s ease;
+}
+
+/* Efecto extra cuando SÍ pasas el mouse (se endereza y brilla más) */
+.navbar-logo:hover .logo-img {
+  transform: rotate(0deg) scale(1.2);
+  filter: brightness(1.5);
+  box-shadow: 0 0 30px var(--cyber-pink);
+}
+
+.logo-text {
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #fff;
+  /* Brillo constante en el texto */
+  text-shadow: 0 0 10px var(--cyber-pink), 0 0 20px rgba(255, 0, 127, 0.3);
+}
+
+/* --- ANIMACIÓN DE PULSO --- */
+@keyframes logoPulse {
+  0% {
+    box-shadow: 0 0 10px var(--cyber-pink);
   }
-  
+  50% {
+    box-shadow: 0 0 25px var(--cyber-pink), 0 0 40px rgba(255, 0, 127, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 10px var(--cyber-pink);
+  }
+}
+
+/* --- LINKS --- */
+.navbar-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  color: #a0a0c0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navbar-links li:hover, .navbar-links li.active {
+  color: #fff;
+  text-shadow: 0 0 8px var(--cyber-blue, #00f3ff);
+}
+
+/* Línea debajo del link activo */
+.navbar-links li.active::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--cyber-blue, #00f3ff);
+  box-shadow: 0 0 10px var(--cyber-blue, #00f3ff);
+}
+
+/* --- BOTÓN CTA --- */
+.navbar-cta {
+  background: transparent;
+  border: 1px solid var(--cyber-pink, #ff007f);
+  color: #fff;
+  padding: 10px 22px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+  clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+}
+
+.navbar-cta:hover {
+  background: var(--cyber-pink, #ff007f);
+  box-shadow: 0 0 20px var(--cyber-pink, #ff007f);
+  transform: scale(1.05);
+}
+
+
+/* Responsivo básico */
+@media (max-width: 768px) {
   .navbar-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    display: none; /* En móvil podrías implementar un menú hamburguesa */
   }
-  
-  .navbar-links li {
-    cursor: pointer;
-    font-size: 0.95rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    opacity: 0.75;
-    transition: 0.25s ease;
+}
+
+/* --- BOTONES CTA (ESTILO BASE) --- */
+.navbar-cta {
+  background: transparent;
+  border: 1px solid var(--cyber-pink, #ff007f);
+  color: #fff;
+  padding: 10px 22px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+  /* El mismo tamaño y forma para ambos */
+  min-width: 160px; 
+  clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+}
+
+.navbar-cta:hover {
+  background: var(--cyber-pink, #ff007f);
+  box-shadow: 0 0 20px var(--cyber-pink, #ff007f);
+  transform: scale(1.05);
+}
+
+/* Variante para el botón de Suscripción (Cian) */
+.sub-variant {
+  border-color: var(--cyber-blue, #00f3ff);
+}
+
+.sub-variant:hover {
+  background: var(--cyber-blue, #00f3ff);
+  box-shadow: 0 0 20px var(--cyber-blue, #00f3ff);
+  color: var(--bg-dark); /* Texto oscuro para mejor contraste con cian */
+}
+
+/* --- SECCIÓN DE ACCIONES (CONTENEDOR) --- */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* --- AVATAR HEXAGONAL --- */
+.user-menu-container {
+  position: relative;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.user-avatar-hex {
+  width: 42px;
+  height: 42px;
+  background: var(--cyber-pink, #ff007f);
+  /* Corte hexagonal */
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.inner-hex {
+  width: 38px;
+  height: 38px;
+  background: #05050a;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  overflow: hidden;
+}
+
+.inner-hex img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-avatar-hex:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 15px var(--cyber-pink);
+}
+
+/* --- DROPDOWN NEÓN --- */
+.user-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 220px;
+  background: rgba(10, 10, 20, 0.95);
+  border: 1px solid var(--cyber-blue, #00f3ff);
+  backdrop-filter: blur(15px);
+  padding: 10px 0;
+  display: none; /* Se activa con el hover del padre */
+  box-shadow: -10px 10px 30px rgba(0,0,0,0.5);
+  z-index: 1100;
+}
+
+/* Mostrar dropdown al pasar el mouse */
+.user-menu-container:hover .user-dropdown {
+  display: block;
+  animation: slideInDropdown 0.3s ease forwards;
+}
+
+.dropdown-header {
+  padding: 8px 15px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--cyber-pink, #ff007f);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 5px;
+}
+
+.user-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-dropdown li {
+  padding: 12px 20px;
+  font-size: 0.85rem;
+  color: #e0e0e0;
+  transition: all 0.2s;
+  border-left: 0 solid var(--cyber-blue);
+}
+
+.user-dropdown li:hover {
+  background: rgba(0, 243, 255, 0.1);
+  color: #fff;
+  padding-left: 25px;
+  border-left: 4px solid var(--cyber-blue);
+}
+
+.user-dropdown li.logout {
+  color: var(--cyber-pink);
+  margin-top: 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.user-dropdown li.logout:hover {
+  background: rgba(255, 0, 127, 0.1);
+  border-left-color: var(--cyber-pink);
+}
+
+/* Animación de entrada */
+@keyframes slideInDropdown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-10px) scale(0.95); 
   }
-  
-  .navbar-links li:hover {
-    opacity: 1;
-    text-shadow: 0 0 10px rgba(255,255,255,0.6);
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
   }
-  
-  .navbar-cta {
-    padding: 0.55rem 1.6rem;
-    border-radius: 999px;
-    border: none;
-    background: linear-gradient(90deg, #ec4899, #ef4444);
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s ease;
-    box-shadow: 0 0 18px rgba(236,72,153,0.7);
-  }
-  
-  .navbar-cta:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 30px rgba(236,72,153,1);
-  }
-  
-  @media (max-width: 768px) {
-    .navbar-links {
-      display: none;
-    }
-  }
-  
+}
+/* --- LOGO --- */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+}
+
+.logo-img {
+  width: 45px; /* Tamaño ideal para que no rompa la altura de la nav */
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid var(--cyber-pink, #ff007f);
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+  transition: all 0.4s ease;
+  object-fit: cover;
+}
+
+.navbar-logo:hover .logo-img {
+  transform: rotate(10deg) scale(1.1);
+  box-shadow: 0 0 25px var(--cyber-pink, #ff007f);
+  filter: brightness(1.2);
+}
+
+.logo-text {
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+  font-family: 'Inter', sans-serif;
+}
+
+/* El resto de estilos se mantienen iguales */
